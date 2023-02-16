@@ -124,6 +124,10 @@ plt.plot(t[0:Ls], x[0:Ls])                # Representació del senyal en funció
 plt.xlabel('t en segons')                 # Etiqueta eix temporal
 plt.title('5 periodes de la sinusoide')   # Títol del gràfic
 plt.show()                                # Visualització de l'objecte gràfic. 
+```
+<img src="img/sinusoide.png" width="480" align="center">
+
+```python
 import sounddevice as sd      # Importem el mòdul sounddevice per accedir a la tarja de so
 sd.play(x, fm)                # Reproducció d'àudio
 from numpy.fft import fft     # Importem la funció fft
@@ -142,6 +146,9 @@ plt.xlabel('Index k')                 # Etiqueta de l'eix d'abscisses
 plt.ylabel('$\phi_x[k]$')             # Etiqueta de la fase en Latex
 plt.show()    
 ```
+
+<img src="img/TF.png" width="480" align="center">
+
 2. Modifica el programa per considerar com a senyal a analitzar el senyal del fitxer wav que has creat 
     (`x_r, fm = sf.read('nom_fitxer.wav')`).
 
@@ -167,6 +174,11 @@ plt.plot(t[0:Ls], x[0:Ls])                # Representació del senyal en funció
 plt.xlabel('t en segons')                 # Etiqueta eix temporal
 plt.title('5 periodes de la sinusoide')   # Títol del gràfic
 plt.show()                                # Visualització de l'objecte gràfic. 
+```
+
+<img src="img/TF.png" width="480" align="center">
+
+```python
 import sounddevice as sd      # Importem el mòdul sounddevice per accedir a la tarja de so
 sd.play(x, fm)                # Reproducció d'àudio
 from numpy.fft import fft     # Importem la funció fft
@@ -185,6 +197,8 @@ plt.xlabel('Index k')                 # Etiqueta de l'eix d'abscisses
 plt.ylabel('$\phi_x[k]$')             # Etiqueta de la fase en Latex
 plt.show()    
 ```
+<img src="img/TF.png" width="480" align="center">
+
     - Explica el resultat del apartat anterior.
 
 3. Modifica el programa per representar el mòdul de la Transformada de Fourier en dB i l'eix d'abscisses en el marge de
