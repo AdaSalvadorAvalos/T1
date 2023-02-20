@@ -23,7 +23,7 @@ Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 
 plt.figure(0)                             # Nova figura
 plt.plot(t[0:Ls], x[0:Ls])                # Representació del senyal en funció del temps
 plt.xlabel('t en segons')                 # Etiqueta eix temporal
-plt.title('5 periodes de la sinusoide')   # Títol del gràfic
+plt.title('fx= 4kHz, 5 periodes de la sinusoide')   # Títol del gràfic
 plt.show()                                # Visualització de l'objecte gràfic. 
 
 sd.play(x, fm)    
@@ -60,7 +60,7 @@ Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 
 plt.figure(0)                             # Nova figura
 plt.plot(t[0:Ls], x[0:Ls])                # Representació del senyal en funció del temps
 plt.xlabel('t en segons')                 # Etiqueta eix temporal
-plt.title('5 periodes de la sinusoide')   # Títol del gràfic
+plt.title('fx= 523Hz,5 periodes de la sinusoide')   # Títol del gràfic
 plt.show()                                # Visualització de l'objecte gràfic. 
 
 sd.play(x, fm)    
@@ -100,7 +100,7 @@ Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 
 plt.figure(0)                             # Nova figura
 plt.plot(t[0:Ls], x_r[0:Ls])                # Representació del senyal en funció del temps
 plt.xlabel('t en segons')                 # Etiqueta eix temporal
-plt.title('5 periodes de la sinusoide')   # Títol del gràfic
+plt.title('Exercici 2, 5 periodes de la sinusoide')   # Títol del gràfic
 plt.show()                                # Visualització de l'objecte gràfic. 
 
 sd.play(x_r, fm)    
@@ -133,12 +133,12 @@ t=Tm*np.arange(L)                    # Vector amb els valors de la variable temp
 x = A * np.cos(2 * pi * fx * t)      # Senyal sinusoidal
 sf.write('nom_fitxer.wav', x, fm)   # Escriptura del senyal a un fitxer en format wav
 Tx=1/fx                                   # Període del senyal
-Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
+Ls=int(fm*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
 
 plt.figure(0)                             # Nova figura
 plt.plot(t[0:Ls], x[0:Ls])                # Representació del senyal en funció del temps
 plt.xlabel('t en segons')                 # Etiqueta eix temporal
-plt.title('5 periodes de la sinusoide')   # Títol del gràfic
+plt.title('Exercici 3')   # Títol del gràfic
 plt.show()                                # Visualització de l'objecte gràfic. 
 
 sd.play(x, fm)    
@@ -150,7 +150,7 @@ k=np.arange(N)                        # Vector amb els valors 0≤  k<N
 FK=k/N * fm
 plt.figure(1)                         # Nova figura
 plt.subplot(211)                      # Espai per representar el mòdul
-plt.plot(FK,abs(20*np.log(X/max(X))))  # Representació del mòdul de la transformada
+plt.plot(FK,abs(20*np.log10(X/max(X))))  # Representació del mòdul de la transformada
 plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   # Etiqueta del títol
 plt.ylabel('|X[k]|')                  # Etiqueta de mòdul
 plt.subplot(212)                      # Espai per representar la fase
