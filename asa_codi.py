@@ -130,7 +130,7 @@ t=Tm*np.arange(L)                    # Vector amb els valors de la variable temp
 x = A * np.cos(2 * pi * fx * t)      # Senyal sinusoidal
 sf.write('nom_fitxer.wav', x, fm)   # Escriptura del senyal a un fitxer en format wav
 Tx=1/fx                                   # Període del senyal
-Ls=int(fm*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
+Ls=int(fm*Tx*5)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
 
 plt.figure(0)                             # Nova figura
 plt.plot(t[0:Ls], x[0:Ls])                # Representació del senyal en funció del temps
@@ -160,27 +160,27 @@ plt.show()
 
 #Exercici 4
 T= 0.025      
-fx=440                            
+#fx=440                            
 data, fm =sf.read('pda100.wav')       
 L = int(fm * T)                      # Nombre de mostres del senyal digital
 Tm=1/fm                              # Període de mostratge
-t=Tm*np.arange((L)/fm  )                  # Vector amb els valors de la variable temporal, de 0 a T
+t=Tm*np.arange(L)                  # Vector amb els valors de la variable temporal, de 0 a T
 sf.write('nom_fitxer2.wav', data, fm)   # Escriptura del senyal a un fitxer en format wav
-Tx=1/fx                                   # Període del senyal
-Ls=int(fm*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
+#Tx=1/fx                                   # Període del senyal
+#Ls=int(fm*Tx*5)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
 
 plt.figure(0)                             # Nova figura
-plt.plot(t[0:L], x[0:L])                # Representació del senyal en funció del temps
+plt.plot(t[0:L],data[0:L])                # Representació del senyal en funció del temps
 plt.xlabel('t en segons')                 # Etiqueta eix temporal
 plt.title('Exercici 4')   # Títol del gràfic
 plt.show()                                # Visualització de l'objecte gràfic. 
 
 
 N=5000                        # Dimensió de la transformada discreta
-X=fft(x[0 : Ls], N)           # Càlcul de la transformada de 5 períodes de la sinusoide
+X=fft(data[0 : L], N)           # Càlcul de la transformada de 5 períodes de la sinusoide
 k=np.arange(N)                        # Vector amb els valors 0≤  k<N
 FK=k/N * fm
-k2=np.arange(FK/2,FK)                        # Vector amb els valors 0≤  k<N
+k2=np.arange((FK/2),FK)                        # Vector amb els valors 0≤  k<N
 plt.figure(1)                         # Nova figura
 plt.subplot(211)                      # Espai per representar el mòdul
 plt.plot(k2,abs(20*np.log10(X/max(X))))  # Representació del mòdul de la transformada
