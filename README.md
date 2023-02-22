@@ -104,6 +104,92 @@ Proves i exercicis a fer i entregar
 -----------------------------------
 
 1. Reprodueix l'exemple fent servir diferents freqüències per la sinusoide. Al menys considera $f_x = 4$ kHz, a banda d'una freqüència pròpia en el marge audible. Comenta els resultats.
+```python
+# Amb 4kHz
+T= 2.5                               
+fm=8000                              
+fx=4000                              
+A=4                                  
+pi=np.pi                            
+L = int(fm * T)                      
+Tm=1/fm                              
+t=Tm*np.arange(L)                    
+x = A * np.cos(2 * pi * fx * t)      
+sf.write('nom_fitxer1.wav', x, fm)   
+Tx=1/fx                                   
+Ls=int(fm*5*Tx)                           
+
+plt.figure(111)                            
+plt.plot(t[0:Ls], x[0:Ls])                
+plt.xlabel('t en segons')                 
+plt.title('fx= 4kHz, 5 periodes de la sinusoide')   
+plt.show()                                
+```
+<img src="img/Figure_111.png" width="480" align="center">
+
+```python
+sd.play(x, fm)    
+
+
+N=5000                       
+X=fft(x[0 : Ls], N)           
+k=np.arange(N)                       
+plt.figure(112)                         
+plt.subplot(211)                      
+plt.plot(k,abs(X))                    
+plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
+plt.ylabel('|X[k]|')                  
+plt.subplot(212)                      
+plt.plot(k,np.unwrap(np.angle(X)))    
+plt.xlabel('Index k')                 
+plt.ylabel('$\phi_x[k]$')             
+plt.show() 
+```
+<img src="img/Figure_112.png" width="480" align="center">
+
+```python
+# Amb 523Hz 
+T= 2.5                              
+fm=8000                            
+fx=523                              
+A=4                               
+pi=np.pi                            
+L = int(fm * T)                      
+Tm=1/fm                              
+t=Tm*np.arange(L)                    
+x = A * np.cos(2 * pi * fx * t)     
+sf.write('nom_fitxer2.wav', x, fm)   
+Tx=1/fx                                  
+Ls=int(fm*5*Tx)                          
+
+plt.figure(121)                             
+plt.plot(t[0:Ls], x[0:Ls])                
+plt.xlabel('t en segons')                
+plt.title('fx= 523Hz,5 periodes de la sinusoide')   
+plt.show()                              
+```
+<img src="img/Figure_121.png" width="480" align="center">
+
+```python
+sd.play(x, fm)    
+
+
+N=5000                        
+X=fft(x[0 : Ls], N)           
+k=np.arange(N)                      
+plt.figure(122)                        
+plt.subplot(211)                      
+plt.plot(k,abs(X))                   
+plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
+plt.ylabel('|X[k]|')               
+plt.subplot(212)                     
+plt.plot(k,np.unwrap(np.angle(X)))  
+plt.xlabel('Index k')                 
+plt.ylabel('$\phi_x[k]$')             
+plt.show() 
+```
+<img src="img/Figure_122.png" width="480" align="center">
+
 2. Modifica el programa per considerar com a senyal a analitzar el senyal del fitxer wav que has creat 
     (`x_r, fm = sf.read('nom_fitxer.wav')`).
     - Insereix a continuació una gràfica que mostri 5 períodes del senyal i la seva transformada.
