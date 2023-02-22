@@ -91,7 +91,7 @@ t=Tm* np.arange(len(x_r))
 sf.write('nom_fitxerej2.wav', x_r, fm)   
 
 #  - Insereix a continuació una gràfica que mostri 5 períodes del senyal i la seva transformada.
-fx=440
+fx=4000
 Tx=1/fx                                   # Període del senyal
 Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
 
