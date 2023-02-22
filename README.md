@@ -191,11 +191,12 @@ plt.show()
 <img src="img/Figure_122.png" width="480" align="center"> 
 
 **Comentari**
-En el primer cas hem pogut observar que 5 periodes duren aproximadament 1ms i amb una amplitud de 4. 
-La seva transformada es una sinc de amb el modul de 40. El nombre de mostres en aquest cas es de 10 en els 5 periodes.
 
-En el segon cas a la primera gràfica en funció de temps veiem que 5 periodes duren 8ms i amb una amplitud de 4.
-La seva transformada postra dos pulsos amb el modul a aproximadament 150. El nombre mostres en aquest cas es 76 en els 5 periodes
+En el primer cas, hem pogut observar que 5 períodes duren aproximadament 1ms i amb una amplitud de 4ms.
+La seva transformada és una sinc de amb el mòdul de 40. El nombre de mostres en aquest cas és de 10 als 5 períodes.
+
+En el segon cas a la primera gràfica en funció de temps veiem que 5 períodes duren 8ms i amb una amplitud de 4ms.
+La seva transformada postra dos polsos amb el mòdul a aproximadament 150. El nombre mostres en aquest cas es 76 en els 5 períodes.
 
 2. Modifica el programa per considerar com a senyal a analitzar el senyal del fitxer wav que has creat 
     (`x_r, fm = sf.read('nom_fitxer.wav')`).
@@ -243,11 +244,57 @@ plt.show()
 <img src="img/Figure_22.png" width="480" align="center"> 
 
     - Explica el resultat del apartat anterior.
-He utilizat la senyal del fitxer que he creat amb  fx= 4kHz, d'aquesta manera m'ha donat
+
+He utilitzat el senyal del fitxer que he creat amb fx= 4kHz, així podem observar que el resultat és el mateix que a l'apartat d'on he llegit el fitxer. Ja que també he decidit mirar 5 períodes i tant la informació com la freqüència de la sinosoide és la mateixa.
 
 
 3. Modifica el programa per representar el mòdul de la Transformada de Fourier en dB i l'eix d'abscisses en el marge de
     $0$ a $f_m/2$ en Hz.
+
+```python
+
+T= 2.5                               
+fm=8000                             
+fx=440                               
+A=4                                  
+pi=np.pi                           
+L = int(fm * T)                     
+Tm=1/fm                              
+t=Tm*np.arange(L)                   
+x = A * np.cos(2 * pi * fx * t)     
+sf.write('nom_fitxerej3.wav', x, fm)  
+Tx=1/fx                                   
+Ls=int(fm*Tx*5)                           
+
+plt.figure(31)                             
+plt.plot(t[0:Ls], x[0:Ls])               
+plt.xlabel('t en segons')                 
+plt.title('Exercici 3')  
+plt.show()                                
+```
+<img src="img/Figure_31.png" width="480" align="center"> 
+
+```python
+
+sd.play(x, fm)    
+
+
+N=5000                        
+X=fft(x[0 : Ls], N)          
+k=np.arange(N)                       
+FK=k/N * fm                           #Calcul de la fk, pels valors de l'eix d'abscisses
+plt.figure(32)                         
+plt.subplot(211)                     
+plt.plot(FK/2,abs(20*np.log10(X/max(X))))  # Representació del mòdul de la transformada en dB y de 0 a FK/2
+plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
+plt.ylabel('|X[k]|')                
+plt.subplot(212)                     
+plt.plot(k,np.unwrap(np.angle(X)) )   
+plt.xlabel('Index k')                
+plt.ylabel('$\phi_x[k]$')             
+plt.show() 
+```
+<img src="img/Figure_32.png" width="480" align="center"> 
 
     - Comprova que la mesura de freqüència es correspon amb la freqüència de la sinusoide que has fet servir.
 
