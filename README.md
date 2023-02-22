@@ -235,7 +235,7 @@ plt.xlabel('Index k')
 plt.ylabel('$\phi_x[k]$')             
 plt.show()    
 ```
-<img src="img/Figure_21.png" width="480" align="center"> 
+<img src="img/Figure_22.png" width="480" align="center"> 
 
     - Explica el resultat del apartat anterior.
 
