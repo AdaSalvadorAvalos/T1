@@ -188,11 +188,55 @@ plt.xlabel('Index k')
 plt.ylabel('$\phi_x[k]$')             
 plt.show() 
 ```
-<img src="img/Figure_122.png" width="480" align="center">
+<img src="img/Figure_122.png" width="480" align="center"> 
+
+**Comentari**
 
 2. Modifica el programa per considerar com a senyal a analitzar el senyal del fitxer wav que has creat 
     (`x_r, fm = sf.read('nom_fitxer.wav')`).
+
+```python
+x_r, fm=sf.read('nom_fitxer2.wav')         #agafo la senyal del segon fitxer creat en el exercici anterior, agafo la seva
+#informació i la fm
+Tm=1/fm                            
+t=Tm* np.arange(len(x_r))               
+sf.write('nom_fitxerej2.wav', x_r, fm) 
+```
     - Insereix a continuació una gràfica que mostri 5 períodes del senyal i la seva transformada.
+
+```python
+fx=440
+Tx=1/fx                                   # Període del senyal
+Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
+
+plt.figure(21)                             
+plt.plot(t[0:Ls], x_r[0:Ls])                
+plt.xlabel('t en segons')              
+plt.title('Exercici 2, 5 periodes de la sinusoide')   
+plt.show()                              
+```
+<img src="img/Figure_21.png" width="480" align="center"> 
+
+```python
+
+sd.play(x_r, fm)    
+
+N=5000                       
+X=fft(x_r[0 : Ls], N)         
+k=np.arange(N)                        
+plt.figure(22)                        
+plt.subplot(211)                     
+plt.plot(k,abs(X))                   
+plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
+plt.ylabel('|X[k]|')                 
+plt.subplot(212)                      
+plt.plot(k,np.unwrap(np.angle(X)))   
+plt.xlabel('Index k')               
+plt.ylabel('$\phi_x[k]$')             
+plt.show()    
+```
+<img src="img/Figure_21.png" width="480" align="center"> 
+
     - Explica el resultat del apartat anterior.
 
 3. Modifica el programa per representar el mòdul de la Transformada de Fourier en dB i l'eix d'abscisses en el marge de
