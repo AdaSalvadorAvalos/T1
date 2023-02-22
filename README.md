@@ -191,12 +191,17 @@ plt.show()
 <img src="img/Figure_122.png" width="480" align="center"> 
 
 **Comentari**
+En el primer cas hem pogut observar que 5 periodes duren aproximadament 1ms i amb una amplitud de 4. 
+La seva transformada es una sinc de amb el modul de 40. El nombre de mostres en aquest cas es de 10 en els 5 periodes.
+
+En el segon cas a la primera gràfica en funció de temps veiem que 5 periodes duren 8ms i amb una amplitud de 4.
+La seva transformada postra dos pulsos amb el modul a aproximadament 150. El nombre mostres en aquest cas es 76 en els 5 periodes
 
 2. Modifica el programa per considerar com a senyal a analitzar el senyal del fitxer wav que has creat 
     (`x_r, fm = sf.read('nom_fitxer.wav')`).
 
 ```python
-x_r, fm=sf.read('nom_fitxer2.wav')         #agafo la senyal del segon fitxer creat en el exercici anterior, agafo la seva
+x_r, fm=sf.read('nom_fitxer1.wav')         #agafo la senyal del segon fitxer creat en el exercici anterior, agafo la seva
 #informació i la fm
 Tm=1/fm                            
 t=Tm* np.arange(len(x_r))               
@@ -238,6 +243,8 @@ plt.show()
 <img src="img/Figure_22.png" width="480" align="center"> 
 
     - Explica el resultat del apartat anterior.
+He utilizat la senyal del fitxer que he creat amb  fx= 4kHz, d'aquesta manera m'ha donat
+
 
 3. Modifica el programa per representar el mòdul de la Transformada de Fourier en dB i l'eix d'abscisses en el marge de
     $0$ a $f_m/2$ en Hz.

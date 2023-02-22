@@ -84,7 +84,7 @@ plt.show()
 
 # Exercici 2
 
-x_r, fm=sf.read('nom_fitxer2.wav')         #agafo la senyal del segon fitxer creat en el exercici anterior, agafo la seva
+x_r, fm=sf.read('nom_fitxer1.wav')         #agafo la senyal del segon fitxer creat en el exercici anterior, agafo la seva
 #informació i la fm
 Tm=1/fm                            
 t=Tm* np.arange(len(x_r))               
@@ -175,14 +175,14 @@ plt.show()
 
 
 N=5000                        
-X=fft(data[0 : L], N)           
+X=fft(data[0 : L], N)       
 k=np.arange(N)                        
 FK=k/N * fm
 k2=np.arange(len(FK/2),len(FK))                       
 plt.figure(42)                         
 plt.subplot(211)                      
-plt.plot(k2,abs(20*np.log10(X/max(X)))) 
-plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
+plt.plot(k2,abs(20*np.log10(int(X[fm/2:fm])/max(int(X[fm/2:fm]))))) 
+plt.title(f'Transformada del senyal de Ls={L} mostres amb DFT de N={N}')   
 plt.ylabel('|X[k]|')                 
 plt.subplot(212)                      
 plt.plot(k2,np.unwrap(np.angle(X)) )   
