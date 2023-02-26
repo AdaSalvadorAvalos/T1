@@ -304,7 +304,7 @@ plt.show()
 
 **- Com pots identificar l'amplitud de la sinusoide a partir de la representació de la transformada.Comprova-ho amb el senyal generat.**
 
-No es pot fer perquè en normalitzar pel màxim dóna un 1.
+No es pot fer perquè al normalitzar pel màxim dóna un 1.
 
 > NOTES:
 >
