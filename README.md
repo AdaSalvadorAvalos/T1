@@ -211,7 +211,7 @@ sf.write('nom_fitxerej2.wav', x_r, fm)
     - Insereix a continuació una gràfica que mostri 5 períodes del senyal i la seva transformada.
 
 ```python
-fx=4000
+fx=fm/2
 Tx=1/fx                                   # Període del senyal
 Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
 
@@ -243,7 +243,8 @@ plt.show()
 ```
 <img src="img/Figure_22.png" width="480" align="center"> 
 
-    - Explica el resultat del apartat anterior.
+
+**- Explica el resultat del apartat anterior.**
 
 He utilitzat el senyal del fitxer que he creat amb fx= 4kHz, així podem observar que el resultat és el mateix que a l'apartat d'on he llegit el fitxer. Ja que també he decidit mirar 5 períodes i tant la informació com la freqüència de la sinosoide és la mateixa.
 
@@ -276,30 +277,34 @@ plt.show()
 
 ```python
 
+
 sd.play(x, fm)    
 
 
 N=5000                        
-X=fft(x[0 : Ls], N)          
-k=np.arange(N)                       
-FK=k/N * fm                           #Calcul de la fk, pels valors de l'eix d'abscisses
+X=fft(x[0 : Ls], N)        
+k=np.arange(N)                                            
 plt.figure(32)                         
-plt.subplot(211)                     
-plt.plot(FK/2,abs(20*np.log10(X/max(X))))  # Representació del mòdul de la transformada en dB y de 0 a FK/2
+GdB = 20*np.log10(np.abs(X)/max(np.abs(X)))
+fk = k[0:N//2+1]*fm/N         #Calcul de la fk, pels valors de l'eix d'abscisses
+plt.subplot(211)   
+plt.plot(fk,GdB[0:N//2+1])  # Representació del mòdul de la transformada en dB y de 0 a FK/2
 plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
-plt.ylabel('|X[k]|')                
-plt.subplot(212)                     
-plt.plot(k,np.unwrap(np.angle(X)) )   
-plt.xlabel('Index k')                
-plt.ylabel('$\phi_x[k]$')             
+plt.ylabel('GdB')                  
+plt.subplot(212)                      
+plt.plot(fk,np.unwrap(np.angle(X[0:N//2+1])) )   
+plt.xlabel('f en Hz')                
+plt.ylabel('$\phi_x[k]$')              
 plt.show() 
+ 
 ```
 <img src="img/Figure_32.png" width="480" align="center"> 
 
-    - Comprova que la mesura de freqüència es correspon amb la freqüència de la sinusoide que has fet servir.
+**- Comprova que la mesura de freqüència es correspon amb la freqüència de la sinusoide que has fet servir.**
 
-    - Com pots identificar l'amplitud de la sinusoide a partir de la representació de la transformada?
-      Comprova-ho amb el senyal generat.
+**- Com pots identificar l'amplitud de la sinusoide a partir de la representació de la transformada.Comprova-ho amb el senyal generat.**
+
+No es pot fer perquè en normalitzar pel màxim dóna un 1.
 
 > NOTES:
 >
@@ -317,9 +322,50 @@ plt.show()
     - Freqüència de mostratge.
     - Nombre de mostres de senyal.
     - Tria un segment de senyal de 25ms i insereix una gráfica amb la seva evolució temporal.
-    - Representa la seva transformada en dB en funció de la freqüència, en el marge $f_m\le f\le f_m/2$.
-    - Quines son les freqüències més importants del segment triat?
+    - Representa la seva transformada en dB en funció de la freqüència, en el marge $0\le f\le f_m/2$.
+ 
+```python
+T= 0.025                               
+data, fm =sf.read('luzbel44.wav')       
+L = int(fm * T)                     
+Tm=1/fm                            
+t=Tm*np.arange(L)                  
+sf.write('nom_fitxerej4.wav', data, fm)  
 
+plt.figure(41)                          
+plt.plot(t[0:L],data[0:L])              
+plt.xlabel('t en segons')               
+plt.title('Exercici 4')  
+plt.show()                             
+```
+<img src="img/Figure_41.png" width="480" align="center"> 
+
+```python
+
+N=5000                        
+X=fft(data[0 : L], N)    
+k=np.arange(N)                                         
+plt.figure(42)                         
+GdB = 20*np.log10(np.abs(X)/max(np.abs(X)))
+fk = k[0:N//2+1]*fm/N
+plt.subplot(211)   
+plt.plot(fk,GdB[0:N//2+1])  # Representació del mòdul de la transformada en dB y de 0 a FK/2
+plt.title(f'Transformada del senyal de Ls={L} mostres amb DFT de N={N}')   
+plt.ylabel('GdB')                  
+plt.subplot(212)                      
+plt.plot(fk,np.unwrap(np.angle(X[0:N//2+1])) )   
+plt.xlabel('f en Hz')                
+plt.ylabel('$\phi_x[k]$')          
+plt.show() 
+
+```
+<img src="img/Figure_42.png" width="480" align="center"> 
+
+
+
+**- Quines son les freqüències més importants del segment triat?**
+
+En el segment que he triat les freqüències més importants son del 2kHz a 8kHz aproximadament.
 
 Entrega
 -------

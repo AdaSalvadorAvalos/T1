@@ -91,7 +91,7 @@ t=Tm* np.arange(len(x_r))
 sf.write('nom_fitxerej2.wav', x_r, fm)   
 
 #  - Insereix a continuació una gràfica que mostri 5 períodes del senyal i la seva transformada.
-fx=4000
+fx=fm/2
 Tx=1/fx                                   # Període del senyal
 Ls=int(fm*5*Tx)                           # Nombre de mostres corresponents a 5 períodes de la sinusoide
 
@@ -143,18 +143,19 @@ sd.play(x, fm)
 
 
 N=5000                        
-X=fft(x[0 : Ls], N)          
-k=np.arange(N)                       
-FK=k/N * fm                           #Calcul de la fk, pels valors de l'eix d'abscisses
+X=fft(x[0 : Ls], N)        
+k=np.arange(N)                                            
 plt.figure(32)                         
-plt.subplot(211)                     
-plt.plot(FK/2,abs(20*np.log10(X/max(X))))  # Representació del mòdul de la transformada en dB y de 0 a FK/2
+GdB = 20*np.log10(np.abs(X)/max(np.abs(X)))
+fk = k[0:N//2+1]*fm/N         #Calcul de la fk, pels valors de l'eix d'abscisses
+plt.subplot(211)   
+plt.plot(fk,GdB[0:N//2+1])  # Representació del mòdul de la transformada en dB y de 0 a FK/2
 plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
-plt.ylabel('|X[k]|')                
-plt.subplot(212)                     
-plt.plot(k,np.unwrap(np.angle(X)) )   
-plt.xlabel('Index k')                
-plt.ylabel('$\phi_x[k]$')             
+plt.ylabel('GdB')                  
+plt.subplot(212)                      
+plt.plot(fk,np.unwrap(np.angle(X[0:N//2+1])) )   
+plt.xlabel('f en Hz')                
+plt.ylabel('$\phi_x[k]$')              
 plt.show() 
 
 #--------------------------------------------------------------------------------------
@@ -175,17 +176,17 @@ plt.show()
 
 
 N=5000                        
-X=fft(data[0 : L], N)       
-k=np.arange(N)                        
-FK=k/N * fm
-k2=np.arange(len(FK/2),len(FK))                       
+X=fft(data[0 : L], N)    
+k=np.arange(N)                                         
 plt.figure(42)                         
-plt.subplot(211)                      
-plt.plot(k2,abs(20*np.log10(int(X[fm/2:fm])/max(int(X[fm/2:fm]))))) 
+GdB = 20*np.log10(np.abs(X)/max(np.abs(X)))
+fk = k[0:N//2+1]*fm/N
+plt.subplot(211)   
+plt.plot(fk,GdB[0:N//2+1])  # Representació del mòdul de la transformada en dB y de 0 a FK/2
 plt.title(f'Transformada del senyal de Ls={L} mostres amb DFT de N={N}')   
-plt.ylabel('|X[k]|')                 
+plt.ylabel('GdB')                  
 plt.subplot(212)                      
-plt.plot(k2,np.unwrap(np.angle(X)) )   
-plt.xlabel('Index k')                  
-plt.ylabel('$\phi_x[k]$')            
+plt.plot(fk,np.unwrap(np.angle(X[0:N//2+1])) )   
+plt.xlabel('f en Hz')                
+plt.ylabel('$\phi_x[k]$')          
 plt.show() 
