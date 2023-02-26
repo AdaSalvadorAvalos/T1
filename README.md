@@ -290,7 +290,7 @@ fk = k[0:N//2+1]*fm/N         #Calcul de la fk, pels valors de l'eix d'abscisses
 plt.subplot(211)   
 plt.plot(fk,GdB[0:N//2+1])  # Representació del mòdul de la transformada en dB y de 0 a FK/2
 plt.title(f'Transformada del senyal de Ls={Ls} mostres amb DFT de N={N}')   
-plt.ylabel('Mòdul en GdB')                  
+plt.ylabel('Mòdul en dB')                  
 plt.subplot(212)                      
 plt.plot(fk,np.unwrap(np.angle(X[0:N//2+1])) )   
 plt.xlabel('f en Hz')                
@@ -351,7 +351,7 @@ fk = k[0:N//2+1]*fm/N
 plt.subplot(211)   
 plt.plot(fk,GdB[0:N//2+1])  # Representació del mòdul de la transformada en dB y de 0 a FK/2
 plt.title(f'Transformada del senyal de Ls={L} mostres amb DFT de N={N}')   
-plt.ylabel('Mòdul en GdB')                   
+plt.ylabel('Mòdul en dB')                   
 plt.subplot(212)                      
 plt.plot(fk,np.unwrap(np.angle(X[0:N//2+1])) )   
 plt.xlabel('f en Hz')                
