@@ -192,11 +192,12 @@ plt.show()
 
 **Comentari**
 
-En el primer cas, hem pogut observar que 5 períodes duren aproximadament 1ms i amb una amplitud de 4ms.
-La seva transformada és una sinc de amb el mòdul de 40. El nombre de mostres en aquest cas és de 10 als 5 períodes.
+En el primer cas, he pogut observar que 5 períodes duren aproximadament 1ms i amb una amplitud de 4, a la gràfica en funció del temps.
+La seva transformada és una sinc amb el mòdul de 40. El nombre de mostres en aquest cas és de 10 als 5 períodes. 
+La gràfica de la senyal en el temps te aquesta forma triangular perque la freqüència de la sinusoide es la meitat que la freqüència de mostreig. Això significa que hi ha dos mostres per període.
 
-En el segon cas a la primera gràfica en funció de temps veiem que 5 períodes duren 8ms i amb una amplitud de 4ms.
-La seva transformada postra dos polsos amb el mòdul a aproximadament 150. El nombre mostres en aquest cas es 76 en els 5 períodes.
+En el segon cas, a la primera gràfica en funció del temps hi ha 5 períodes que duren 8ms i amb una amplitud de 4.
+La seva transformada mostra dos polsos amb el mòdul aproximadament de 150. El nombre mostres en aquest cas es 76 en els 5 períodes.
 
 2. Modifica el programa per considerar com a senyal a analitzar el senyal del fitxer wav que has creat 
     (`x_r, fm = sf.read('nom_fitxer.wav')`).
@@ -246,7 +247,7 @@ plt.show()
 
 **- Explica el resultat del apartat anterior.**
 
-He utilitzat el senyal del fitxer que he creat amb fx= 4kHz, així podem observar que el resultat és el mateix que a l'apartat d'on he llegit el fitxer. Ja que també he decidit mirar 5 períodes i tant la informació com la freqüència de la sinosoide és la mateixa.
+He utilitzat el senyal del fitxer que he creat amb fx= 4kHz, així podem observar que el resultat és el mateix que a l'apartat d'on he llegit el fitxer. Ja que també he decidit mirar 5 períodes i tant la informació com la freqüència de la sinusoide és la mateixa.
 
 
 3. Modifica el programa per representar el mòdul de la Transformada de Fourier en dB i l'eix d'abscisses en el marge de
